@@ -73,10 +73,12 @@ int main(int argc, char* argv[]) {
     B = malloc(n * sizeof(int*));
     C = malloc(n * sizeof(int*));
 
-    for (int i = 0; i < n; i++) {
-        A[i] = malloc(n * sizeof(int));
-        B[i] = malloc(n * sizeof(int));
-        C[i] = malloc(n * sizeof(int));
+    int ind;
+
+    for (ind = 0; ind < n; ind++) {
+        A[ind] = malloc(n * sizeof(int));
+        B[ind] = malloc(n * sizeof(int));
+        C[ind] = malloc(n * sizeof(int));
     }
 
     // generate matrices for A and B
@@ -135,7 +137,7 @@ void* Pth_mat_mult(void* rank) {
     int i, j, m;
     int local_n = n / sqrt(thread_count); // Dimension of each block
     int x = floor(my_rank / sqrt(thread_count)); // x = ⌊k√p⌋
-    int y = my_rank % (int)sqrt(thread_count); // y = k%√p
+    int y = my_rank % sqrt(thread_count); // y = k%√p
 
     int my_first_row = x * local_n; // Ensure the row and columns are bounded between (n/√p)x and (n/√p)(x+1)-1
     int my_last_row = (x + 1) * local_n - 1;
