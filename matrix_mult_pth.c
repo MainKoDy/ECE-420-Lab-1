@@ -145,8 +145,8 @@ void* Pth_mat_mult(void* rank) {
     for (i = my_first_row; i <= my_last_row; i++) {
         for (j = my_first_col; j <= my_last_col; j++) {
             C[i][j] = 0; // Initialize C element
-            for (m = 0; k < n; m++) {
-                C[i][j] += A[i][m] * B[k][m]; // compute multiplication between elements
+            for (m = 0; m < n; m++) {
+                C[i][j] += A[i][m] * B[m][j]; // compute multiplication between elements
             }
         }
     }
