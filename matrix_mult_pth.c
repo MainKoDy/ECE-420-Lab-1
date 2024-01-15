@@ -45,7 +45,7 @@ int main(int argc, char* argv[]) {
    pthread_t* thread_handles;
    double start, end, Time;
 
-   GET_TIME(start);
+    GET_TIME(start); // start runtime of code
 
     printf("Enter n\n"); // prompt user to enter n, size of matrix
     scanf("%d", &n);
@@ -55,11 +55,12 @@ int main(int argc, char* argv[]) {
 
     printf("The number of threads is %d\n", thread_count);
 
-    // Check if the number of threads is divisible with n^2, and if thread_count is a square number
+    // Check if the number of threads is divisible with n^2
     if (n * n % thread_count != 0) {
         fprintf(stderr, "Error: n^2 must be divisible by the number of threads.\n");
         exit(1);
     }
+    // Check if thread_count is a square number
     else if (sqrt(thread_count) * sqrt(thread_count) != thread_count) {
         fprintf(stderr, "Number of threads must be a square number.\n");
         exit(1);
@@ -67,7 +68,7 @@ int main(int argc, char* argv[]) {
 
     thread_handles = malloc(thread_count * sizeof(pthread_t));
 
-    // Corrected memory allocation for matrices
+    // Allocate memory for matrices
     A = malloc(n * sizeof(int*));
     B = malloc(n * sizeof(int*));
     C = malloc(n * sizeof(int*));
@@ -98,13 +99,14 @@ int main(int argc, char* argv[]) {
 
     Print_matrix("The product (Matrix C) is: ", C, n);
 
-    GET_TIME(end);
+    GET_TIME(end); // end runtime of code
     Time = end - start; // Get runtime of code
     Lab1_saveoutput(C, &n, Time); // Load resulting matrix in C
 
-   free(A);
-   free(B);
-   free(C);
+    // free up allocated space for matrices
+    free(A);
+    free(B);
+    free(C);
 
    return 0;
 }  /* main */
