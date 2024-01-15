@@ -1,0 +1,25 @@
+Read me for ECE420 Lab1 Assignment
+Kody Diep, Mohammed Saleh, Lawrence Wang
+Jan. 2024
+
+=====
+Overview:
+    There are four groups in this function:
+
+-----
+    Data generation program:
+    matrixgen.c      source file for the input data generation program, given from the development kit for lab 1 in eclass.
+
+-----
+    Important functions:
+    timer.h          macro definition for time measurement, given from the development kit for lab 1 in eclass
+    lab1_IO.h        header for the lab1_IO.c, need to be included to call the IOs directly from lab1_IO.c. Given from the development kit for lab 1 in eclass
+    lab1_IO.c        source file for the IO functions, need to be referred in the compiler line if the functions are called in the program. Given from the development kit for lab 1 in eclass
+	
+----
+    Matrix multiplication program:
+    matrix_mult_pth.c   file which includes the program to calculate the resulting matrix between the product of 2 matrices.
+
+    Makefile            makefile for the program. Includes instructions to create the executables of both the matrix generation program, and the matrix multiplication program.
+=====
+
