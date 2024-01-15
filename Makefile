@@ -1,9 +1,9 @@
 CC = gcc
 OBJECTS = lab1_IO.o matrix_mult_pth.o
 
-# Compile all object files, create executable './lab1'.
+# Compile all object files, create executable './main'.
 run: $(OBJECTS)
-	$(CC) -g -Wall -o lab1 $(OBJECTS) -lpthread -lm
+	$(CC) -g -Wall -o main $(OBJECTS) -lpthread -lm
 
 # Compile matrixgen, create executable './matrixgen'.
 runmat: matrixgen.o
@@ -23,7 +23,7 @@ matrixgen.o: matrixgen.c
 
 # Delete all object files and the executable.
 clean:
-	rm -f ./lab1 $(OBJECTS)
+	rm -f ./main $(OBJECTS)
 
 # Delete all object files and executables pertaining to "matrixgen", including the data_input file
 cleanmat:
