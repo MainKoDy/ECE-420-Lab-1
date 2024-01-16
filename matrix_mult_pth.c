@@ -16,7 +16,7 @@
  * Compile: 
  *      gcc -g -Wall -o lab1 lab1_IO.o matrix_mult_pth.o -lpthread -lm
  * Usage:
- *     ./lab1 <thread_count>
+ *     ./main <thread_count>
  */
 
 #include <stdio.h>
@@ -27,7 +27,7 @@
 #include "lab1_IO.h"
 
 /* Global variables */
-int     thread_count;
+int thread_count; // number of threads
 int **A; // Matrix A
 int **B; // Matrix B
 int **C; // Matrix C
@@ -44,8 +44,6 @@ int main(int argc, char* argv[]) {
    long       thread;
    pthread_t* thread_handles;
    double start, end, Time;
-
-    GET_TIME(start); // start runtime of code
 
     printf("Enter n\n"); // prompt user to enter n, size of matrix
     scanf("%d", &n);
@@ -66,7 +64,7 @@ int main(int argc, char* argv[]) {
         exit(1);
     }
 
-    thread_handles = malloc(thread_count * sizeof(pthread_t));
+    thread_handles = malloc(thread_count * sizeof(pthread_t)); // allocate and declare the threads to be used
 
     // Allocate memory for matrices
     A = malloc(n * sizeof(int*));
@@ -88,20 +86,23 @@ int main(int argc, char* argv[]) {
     Print_matrix("Matrix A: ", A, n);
     Print_matrix("Matrix B: ", B, n);
 
+    // recording time it takes to create/join the threads by executing the matrix multiplication:
+    GET_TIME(start); // start time
+
     // Deploying pThreads to compute Matrix C:
     for (thread = 0; thread < thread_count; thread++) {
         printf("Thread %ld created.\n", thread);
-        pthread_create(&thread_handles[thread], NULL, Pth_mat_mult, (void*)thread);
+        pthread_create(&thread_handles[thread], NULL, Pth_mat_mult, (void*)thread);/ // create threads, with the rank passed into the function "Pth_mat_mult"
     }
 
     for (thread = 0; thread < thread_count; thread++) {
         printf("Thread %ld joined.\n", thread);
-        pthread_join(thread_handles[thread], NULL);
+        pthread_join(thread_handles[thread], NULL); // join threads
     }
 
-    Print_matrix("The product (Matrix C) is: ", C, n);
+    GET_TIME(end); // end time
 
-    GET_TIME(end); // end runtime of code
+    Print_matrix("The product (Matrix C) is: ", C, n);
     Time = end - start; // Get runtime of code
     Lab1_saveoutput(C, &n, Time); // Load resulting matrix in C
 
@@ -146,7 +147,7 @@ void* Pth_mat_mult(void* rank) {
 
     for (i = my_first_row; i <= my_last_row; i++) {
         for (j = my_first_col; j <= my_last_col; j++) {
-            C[i][j] = 0; // Initialize C element
+            C[i][j] = 0;
             for (m = 0; m < n; m++) {
                 C[i][j] += A[i][m] * B[m][j]; // compute multiplication between elements
             }

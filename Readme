@@ -4,7 +4,7 @@ Jan. 2024
 
 =====
 Overview:
-    There are four groups in this function:
+    This program calculates the product between 2 square matrices. It includes both a program to generate two matrices, and a program to compute the product.
 
 -----
     Data generation program:
@@ -18,7 +18,7 @@ Overview:
 	
 ----
     Matrix multiplication program:
-    matrix_mult_pth.c   file which includes the program to calculate the resulting matrix between the product of 2 matrices.
+    matrix_mult_pth.c   file which includes the program to calculate the resulting matrix between the product of 2 square matrices.
 
     Makefile            makefile for the program. Includes instructions to create the executables of both the matrix generation program, and the matrix multiplication program.
 =====
