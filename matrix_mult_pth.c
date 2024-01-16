@@ -58,8 +58,10 @@ int main(int argc, char* argv[]) {
         fprintf(stderr, "Error: n^2 must be divisible by the number of threads.\n");
         exit(1);
     }
+    int sqrt_thread_count = (int)sqrt(thread_count);
+
     // Check if thread_count is a square number
-    else if (sqrt(thread_count) * sqrt(thread_count) != thread_count) {
+    if (sqrt_thread_count * sqrt_thread_count != thread_count) {
         fprintf(stderr, "Number of threads must be a square number.\n");
         exit(1);
     }
@@ -92,7 +94,7 @@ int main(int argc, char* argv[]) {
     // Deploying pThreads to compute Matrix C:
     for (thread = 0; thread < thread_count; thread++) {
         printf("Thread %ld created.\n", thread);
-        pthread_create(&thread_handles[thread], NULL, Pth_mat_mult, (void*)thread);/ // create threads, with the rank passed into the function "Pth_mat_mult"
+        pthread_create(&thread_handles[thread], NULL, Pth_mat_mult, (void*)thread); // create threads, with the rank passed into the function "Pth_mat_mult"
     }
 
     for (thread = 0; thread < thread_count; thread++) {
