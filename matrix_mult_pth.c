@@ -118,7 +118,7 @@ int main(int argc, char* argv[]) {
 
 
 /*------------------------------------------------------------------
- * Function:  Usage
+ * Function:  Usage (function provided by eclass example)
  * Purpose:   print a message showing what the command line should
  *            be, and terminate
  * In arg :   prog_name
@@ -160,7 +160,7 @@ void* Pth_mat_mult(void* rank) {
 } /* Pth_mat_mult */
 
 /*------------------------------------------------------------------
- * Function:    Print_matrix
+ * Function:    Print_matrix (function provided by eclass example)
  * Purpose:     Print an n x n matrix
  * In args:     title, A, n
  */
@@ -170,7 +170,7 @@ void Print_matrix(char* title, int** A, int n) {
     printf("%s\n", title);
     for (i = 0; i < n; i++) {
         for (j = 0; j < n; j++)
-            printf("%4d ", A[i][j]);  // Use %d for integers
+            printf("%4d ", A[i][j]);
         printf("\n");
     }
 }  /* Print_matrix */
